@@ -76,6 +76,13 @@ const downloadMovieDetails = (movie) => {
   link.click();
   document.body.removeChild(link);
 };
+
+// Function to redirect users to a movie search on an external platform
+const redirectToWatch = (movieTitle) => {
+  const query = encodeURIComponent(movieTitle);
+  const watchUrl = `https://www.justwatch.com`;
+  window.open(watchUrl, "_blank");
+};
 </script>
 
 <template>
@@ -100,7 +107,9 @@ const downloadMovieDetails = (movie) => {
     <div v-if="loading" class="text-center text-gray-500 mt-4">Loading...</div>
 
     <!-- Error Message -->
-    <div v-if="errorMessage" class="text-center text-red-500 mt-4">{{ errorMessage }}</div>
+    <div v-if="errorMessage" class="text-center text-red-500 mt-4">
+      {{ errorMessage }}
+    </div>
 
     <!-- Movie List -->
     <div
@@ -138,12 +147,20 @@ const downloadMovieDetails = (movie) => {
             class="mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-200">
             <i class="fas fa-download"></i> Download Details
           </button>
+
+          <button
+            @click="redirectToWatch(movie.Title)"
+            class="mt-2 px-4 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition duration-200">
+            <i class="fas fa-film"></i> Watch Online
+          </button>
         </div>
       </div>
     </div>
 
     <!-- No Movies Found -->
-    <div v-else-if="!loading && !errorMessage" class="text-center text-gray-500 mt-8">
+    <div
+      v-else-if="!loading && !errorMessage"
+      class="text-center text-gray-500 mt-8">
       No movies found. Please try searching for something else.
     </div>
   </div>
