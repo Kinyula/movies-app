@@ -99,7 +99,10 @@ const redirectToWatch = (movieTitle) => {
       <button
         type="submit"
         class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-200">
-        Search
+        <span class="flex gap-2 items-center">
+          <i class="fas fa-search"></i>
+          <p>Search</p>
+        </span>
       </button>
     </form>
 
