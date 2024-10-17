@@ -62,11 +62,6 @@ const downloadMovieDetails = (movie) => {
     Title: ${movie.Title}
     Year: ${movie.Year}
     Type: ${movie.Type}
-
-    Director: ${movie.Director}
-    Genre: ${movie.Genre}
-    Actors: ${movie.Actors}
-
   `;
 
   // Create a Blob with the plain text data
@@ -134,16 +129,14 @@ const downloadMovieDetails = (movie) => {
             @click="downloadPoster(movie.Poster, movie.Title)"
             v-if="movie.Poster !== 'N/A'"
             class="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 transition duration-200">
-            <i class="fas fa-download"></i>
-            Download Poster
+            <i class="fas fa-download"></i> Download Poster
           </button>
 
           <!-- Download Movie Details as Text -->
           <button
             @click="downloadMovieDetails(movie)"
             class="mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-200">
-            <i class="fas fa-download"></i>
-            Download Details
+            <i class="fas fa-download"></i> Download Details
           </button>
         </div>
       </div>
