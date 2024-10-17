@@ -61,8 +61,12 @@ const downloadMovieDetails = (movie) => {
   const movieDetails = `
     Title: ${movie.Title}
     Year: ${movie.Year}
-    IMDB ID: ${movie.imdbID}
     Type: ${movie.Type}
+
+    Director: ${movie.Director}
+    Genre: ${movie.Genre}
+    Actors: ${movie.Actors}
+
   `;
 
   // Create a Blob with the plain text data
