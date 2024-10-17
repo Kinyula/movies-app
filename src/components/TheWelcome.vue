@@ -5,26 +5,44 @@ import env from "@/env.js";
 
 const searchInput = ref("");
 const movies = ref([]);
+const errorMessage = ref(""); // Store error messages
+const loading = ref(false); // To handle loading state
 
 // Function to search movies
-const searchMovies = () => {
-  if (searchInput.value !== "") {
-    const query = encodeURIComponent(searchInput.value);
-    const apiUrl = `http://www.omdbapi.com/?apikey=${env.apikey}&s=${query}`;
+const searchMovies = async () => {
+  if (searchInput.value.trim() === "") {
+    errorMessage.value = "Please enter a search term.";
+    movies.value = []; // Clear previous results
+    return;
+  }
 
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.Response === "True") {
-          movies.value = data.Search;
-        } else {
-          console.error("No results found");
-          movies.value = [];
-        }
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  } else {
-    console.log("Please enter a search term.");
+  const query = encodeURIComponent(searchInput.value);
+  const apiUrl = `https://www.omdbapi.com/?apikey=${env.apikey}&s=${query}`;
+
+  loading.value = true; // Set loading to true
+
+  try {
+    const response = await fetch(apiUrl);
+
+    // Check if the response is OK
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.Response === "True") {
+      movies.value = data.Search;
+      errorMessage.value = ""; // Clear any previous error messages
+    } else {
+      movies.value = [];
+      errorMessage.value = "No results found.";
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    errorMessage.value = "Error fetching data. Please try again later.";
+  } finally {
+    loading.value = false; // Reset loading state
   }
 };
 
@@ -38,9 +56,8 @@ const downloadPoster = (posterUrl, title) => {
   document.body.removeChild(link);
 };
 
-
+// Function to download movie details
 const downloadMovieDetails = (movie) => {
-
   const movieDetails = `
     Title: ${movie.Title}
     Year: ${movie.Year}
@@ -80,6 +97,12 @@ const downloadMovieDetails = (movie) => {
       </button>
     </form>
 
+    <!-- Loading Indicator -->
+    <div v-if="loading" class="text-center text-gray-500 mt-4">Loading...</div>
+
+    <!-- Error Message -->
+    <div v-if="errorMessage" class="text-center text-red-500 mt-4">{{ errorMessage }}</div>
+
     <!-- Movie List -->
     <div
       v-if="movies.length > 0"
@@ -107,13 +130,15 @@ const downloadMovieDetails = (movie) => {
             @click="downloadPoster(movie.Poster, movie.Title)"
             v-if="movie.Poster !== 'N/A'"
             class="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 transition duration-200">
+            <i class="fas fa-download"></i>
             Download Poster
           </button>
 
-          <!-- Download Movie Details as JSON -->
+          <!-- Download Movie Details as Text -->
           <button
             @click="downloadMovieDetails(movie)"
             class="mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-200">
+            <i class="fas fa-download"></i>
             Download Details
           </button>
         </div>
@@ -121,8 +146,12 @@ const downloadMovieDetails = (movie) => {
     </div>
 
     <!-- No Movies Found -->
-    <div v-else class="text-center text-gray-500 mt-8">
+    <div v-else-if="!loading && !errorMessage" class="text-center text-gray-500 mt-8">
       No movies found. Please try searching for something else.
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Add your styles here */
+</style>

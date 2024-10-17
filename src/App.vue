@@ -26,8 +26,8 @@ const toggleMobileMenu = () => {
 
       <!-- Desktop Navigation Links -->
       <div class="hidden md:flex space-x-4">
-        <RouterLink to="/" class="hover:text-yellow-300">Home</RouterLink>
-        <RouterLink to="/about" class="hover:text-yellow-300">About</RouterLink>
+        <RouterLink to="/" class="hover:text-yellow-300"><i class="fas fa-home"></i> Home</RouterLink>
+        <RouterLink to="/about" class="hover:text-yellow-300"><i class="fas fa-info-circle"></i> About</RouterLink>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -42,8 +42,8 @@ const toggleMobileMenu = () => {
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden mt-4" :class="{'hidden': !isMobileMenuOpen, 'block': isMobileMenuOpen}">
-      <RouterLink to="/" class="block hover:text-yellow-300">Home</RouterLink>
-      <RouterLink to="/about" class="block hover:text-yellow-300">About</RouterLink>
+      <RouterLink to="/" class="block hover:text-yellow-300"><i class="fas fa-home"></i> Home</RouterLink>
+      <RouterLink to="/about" class="block hover:text-yellow-300"><i class="fas fa-info-circle"></i> About</RouterLink>
     </div>
   </header>
 
