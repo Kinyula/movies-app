@@ -25,18 +25,23 @@
 
       <!-- Developer Skill Set Card -->
       <div class="card bg-white shadow-lg rounded-lg p-6">
-        <img 
-          src="../assets/images/profile.jpg" 
-          alt="Developer Skill Set" 
-          class="w-full h-96 object-cover rounded-md mb-4">
-        <h2 class="text-2xl font-semibold mb-4">Software engineer Victor Zacharia</h2>
-        <p class="text-gray-700 mb-6">
-          This application is proudly developed by <strong>Victor Zacharia</strong>, a seasoned software engineer with extensive experience in building dynamic and user-friendly web applications. 
-          Victor specializes in using Vue.js, a modern JavaScript framework, to create efficient and scalable front-end solutions. 
-          His expertise in JavaScript, component-based architecture, and responsive design ensures that every project not only meets, 
-          but exceeds user expectations.
-        </p>
-      </div>
+  <img 
+    src="../assets/images/profile.jpg" 
+    alt="Developer Skill Set" 
+    class="w-full h-96 object-cover rounded-md mb-4">
+  <h2 class="text-2xl font-semibold mb-4">Software Engineer Victor Zacharia</h2>
+  <p class="text-gray-700 mb-6">
+    This application is proudly developed by <strong>Victor Zacharia</strong>, a seasoned software engineer with extensive experience in building dynamic and user-friendly web applications. 
+    Victor specializes in using <strong>Vue.js</strong>, a modern JavaScript framework, to create efficient and scalable front-end solutions. His expertise spans <strong>JavaScript</strong>, 
+    <strong>component-based architecture</strong>, and <strong>responsive design</strong>, ensuring that every project not only meets but exceeds user expectations.
+  </p>
+  <p class="text-gray-700 mb-6">
+    On the back-end, Victor leverages the power of <strong>Laravel</strong>, a robust PHP framework, to build secure and performant applications. He seamlessly integrates <strong>Livewire</strong> and 
+    <strong>Alpine.js</strong> to create dynamic, real-time user interfaces. Additionally, he has strong expertise in managing databases such as <strong>PostgreSQL</strong>, 
+    <strong>MySQL</strong>, and <strong>MongoDB</strong>, ensuring data integrity and optimal performance.
+  </p>
+</div>
+
     </div>
 
   </div>
