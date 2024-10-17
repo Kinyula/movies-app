@@ -17,7 +17,7 @@ const searchMovies = async () => {
   }
 
   const query = encodeURIComponent(searchInput.value);
-  const apiUrl = `https://www.omdbapi.com/?apikey=${env.apikey}&s=${query}`;
+  const apiUrl = `http://www.omdbapi.com/?apikey=${env.apikey}&s=${query}`;
 
   loading.value = true; // Set loading to true
 
@@ -116,7 +116,7 @@ const downloadMovieDetails = (movie) => {
             :src="
               movie.Poster !== 'N/A'
                 ? movie.Poster
-                : 'https://via.placeholder.com/300x450?text=No+Image+Available'
+                : 'http://via.placeholder.com/300x450?text=No+Image+Available'
             "
             :alt="movie.Title"
             class="w-full h-auto rounded-md mb-4" />
